@@ -1,2 +1,2 @@
-include ':app'
+include ':sample', ':rmsview'
 rootProject.name='RmsView Sample'
