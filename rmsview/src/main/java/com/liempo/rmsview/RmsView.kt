@@ -8,7 +8,7 @@ import android.view.View
 import com.liempo.rmsview.animators.*
 import java.util.*
 
-@Suppress("unused")
+@Suppress("unused", "MemberVisibilityCanBePrivate")
 class RmsView : View  {
 
     private val recognitionBars = ArrayList<RecognitionBar>()
@@ -222,6 +222,22 @@ class RmsView : View  {
         return barHeights
     }
 
+    fun setCircleRadiusInDp(radius: Int) {
+        this.radius = (radius * density).toInt()
+    }
+
+    fun setSpacingInDp(spacing: Int) {
+        this.spacing = (spacing * density).toInt()
+    }
+
+    fun setIdleStateAmplitudeInDp(amplitude: Int) {
+        this.amplitude = (amplitude * density).toInt()
+    }
+
+    fun setRotationRadiusInDp(radius: Int) {
+        this.rotationRadius = (radius * density).toInt()
+    }
+
     private fun resetBars() {
         for (bar in recognitionBars) {
             bar.x = bar.startX
@@ -231,18 +247,18 @@ class RmsView : View  {
         }
     }
 
-    private fun startIdleInterpolation() {
+    fun startIdleInterpolation() {
         animator = IdleAnimator(recognitionBars, amplitude)
         animator!!.start()
     }
 
-    private fun startRmsInterpolation() {
+    fun startRmsInterpolation() {
         resetBars()
         animator = RmsAnimator(recognitionBars)
         animator!!.start()
     }
 
-    private fun startTransformInterpolation() {
+    fun startTransformInterpolation() {
         resetBars()
         animator = TransformAnimator(recognitionBars,
             width / 2, height / 2, rotationRadius)
@@ -255,7 +271,7 @@ class RmsView : View  {
         })
     }
 
-    private fun startRotateInterpolation() {
+    fun startRotateInterpolation() {
         animator = RotatingAnimator(recognitionBars,
             width / 2, height / 2)
         animator!!.start()
